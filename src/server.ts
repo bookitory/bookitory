@@ -9,6 +9,9 @@ import { CustomError } from '@shared/errors';
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.get('/', (req: Request, res: Response) => {
     res.send('hello');
 });
