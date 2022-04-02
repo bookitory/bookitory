@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title Bookitory
+
+    body
+        h2 Register
+
+        form(action="/register" method="post" id="register")
+            input(type="text" name="email" placeholder="email" autofocus)
+            br
+            input(type="text" name="password" placeholder="password")
+            br
+            input(type="file" name="image")
+            br
+            button submit
+
+    script(type="text/javascript", src="/scripts/register/index.js")
