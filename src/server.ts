@@ -3,11 +3,14 @@ import path from 'path';
 import express, { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import registerRouter from "@routes/register";
+import registerRouter from '@routes/register';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
 
 const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
     res.send('hello');
@@ -33,7 +36,7 @@ app.use((err: Error | CustomError, _: Request, res: Response, __: NextFunction) 
  **********************************************************************************/
 
 // Set views engine
- app.set("view engine", "pug");
+ app.set('view engine', 'pug');
 
 // Set views dir
 const viewsDir = path.join(__dirname, 'views');

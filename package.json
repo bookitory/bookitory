@@ -73,7 +73,9 @@
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "pug": "^3.0.2"
+    "multer": "^1.4.4",
+    "pug": "^3.0.2",
+    "sharp": "^0.30.3"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",
@@ -84,7 +86,9 @@
     "@types/jasmine": "^4.0.0",
     "@types/jsonfile": "^6.1.0",
     "@types/morgan": "^1.9.3",
+    "@types/multer": "^1.4.7",
     "@types/node": "^17.0.23",
+    "@types/sharp": "^0.30.0",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
