@@ -7,12 +7,13 @@ html
     body
         h2 Register
 
-        form(action="/register" method="post" id="register")
+        //- image를 업로드 하기 위해 enctype="multipart/form-data"로 지정해야한다
+        form(action="/register" method="post" id="register" enctype="multipart/form-data")
             input(type="text" name="email" placeholder="email" autofocus)
             br
             input(type="password" name="password" placeholder="password")
             br
-            input(type="file" name="image")
+            input(type="file" name="image" accept="image/png,image/jpg,image/jpeg")
             br
             button submit
 
