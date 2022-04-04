@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `member` (
     `email` VARCHAR(50) NOT NULL,
     `pwd` VARCHAR(255) NOT NULL,
-    `img` VARCHAR(255) DEFAULT NULL,
+    `profile` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (email)
 );
