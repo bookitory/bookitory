@@ -3,7 +3,7 @@ import path from 'path';
 import express, { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import registerRouter from '@routes/register';
+import { registerRouter, apiRouter } from '@routes/index';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
 
@@ -17,10 +17,13 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 /***********************************************************************************
- *                        Register routes and error handling
+ *                        Routes and Error handling
  **********************************************************************************/
-// Add api router
+// Add register router
 app.use('/register', registerRouter);
+
+// Add api router
+app.use('/api', apiRouter);
 
 // Error handling
 app.use((err: Error | CustomError, _: Request, res: Response, __: NextFunction) => {

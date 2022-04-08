@@ -83,6 +83,9 @@
       ],
       "@routes/*": [
         "src/routes/*"
+      ],
+      "@api/*": [
+        "src/routes/api/*"
       ]
     },
     "useUnknownInCatchVariables": false
