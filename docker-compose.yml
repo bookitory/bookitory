@@ -5,6 +5,8 @@ services:
     image: mysql:latest
     container_name: bookitory-mysql
     restart: unless-stopped
+    ports:
+      - "13306:3306"
     env_file:
       - .env
     command: 
