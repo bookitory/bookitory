@@ -5,8 +5,8 @@ import { join } from 'path';
 import sharp from 'sharp';
 import fetch from 'node-fetch';
 
-import { RequestRegister } from '@models/reqBody';
-import { Member } from '@models/member';
+import { RequestRegister } from '@interfaces/reqBody';
+import { Member } from 'src/interfaces/member';
 
 const dir = join(__dirname, '..', 'public', 'images', 'uploads');
 const APIURL = "http://localhost:3000/api/";
@@ -54,12 +54,15 @@ registerRouter.post('/',  upload.single('profile'), (req: Request, res: Response
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(member)
-        }).then(data => {
-            console.log("fetch data: ", data)
-            res.json(data);
-        }).catch(err => {
-            next(err);
         })
+        .then(res => res.json())
+        .then(data => {
+            if (data.statusCode == 200) {
+                return res.redirect('/');
+            } else {
+                return res.redirect('/register');
+            }
+        });
     } catch (error) {
         next(error);
     }

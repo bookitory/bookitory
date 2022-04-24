@@ -86,6 +86,12 @@
       ],
       "@api/*": [
         "src/routes/api/*"
+      ],
+      "@database/*": [
+        "src/database/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
       ]
     },
     "useUnknownInCatchVariables": false
