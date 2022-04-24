@@ -15,7 +15,7 @@ registerRouter.post('/', async (req: Request, res: Response, next: NextFunction)
 
         await DB.member.create({
             email: reqBody.email,
-            pwd: reqBody.password,
+            pwd: reqBody.pwd,
             profile: reqBody.profile
         });
 

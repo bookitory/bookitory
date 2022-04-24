@@ -1,12 +1,7 @@
+import { Member } from "@interfaces/member";
 import { Model, DataTypes, Sequelize } from "sequelize";
 
-interface MemberAttributes {
-    email : string
-    pwd : string
-    profile : string
-}
-
-class MemberModel extends Model<MemberAttributes> {
+class MemberModel extends Model<Member> {
     public email!: string;
     public pwd!: string;
     public profile! : string;
