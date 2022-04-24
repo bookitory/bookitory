@@ -1,4 +1,4 @@
-import { IUser } from '@models/user-model';
+import { IUser } from '@interfaces/user-model';
 import { getRandomInt } from '@shared/functions';
 import orm from './mock-orm';
 
