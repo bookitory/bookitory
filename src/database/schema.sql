@@ -4,3 +4,5 @@ CREATE TABLE IF NOT EXISTS `member` (
     `profile` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (email)
 );
+
+CREATE user 'bookitory'@'localhost' identified BY 'bookitory1!'; 
