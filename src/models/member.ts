@@ -3,7 +3,7 @@ import { Model, DataTypes, Sequelize } from "sequelize";
 
 class MemberModel extends Model<Member> {
     public email!: string;
-    public pwd!: string;
+    public password!: string;
     public profile! : string;
 }
 
@@ -15,7 +15,7 @@ export default function(sequelize: Sequelize): typeof MemberModel {
                 allowNull: false,
                 primaryKey: true
             },
-            pwd: {
+            password: {
                 type: DataTypes.STRING(255),
                 allowNull: false
             },

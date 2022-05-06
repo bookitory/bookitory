@@ -1,4 +1,4 @@
 export interface RequestRegister {
     email: string
-    pwd: string
+    password: string
 }
