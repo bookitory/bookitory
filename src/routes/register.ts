@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import multer from 'multer';
 import { mkdirSync, existsSync, writeFile } from 'fs';
 import { join } from 'path';
+import multer from 'multer';
 import sharp from 'sharp';
-import fetch from 'node-fetch';
 
+import DB from '@models/index';
 import { RequestRegister } from '@interfaces/reqBody';
 import { Member } from 'src/interfaces/member';
 
 const dir = join(__dirname, '..', 'public', 'images', 'uploads');
-const APIURL = "http://localhost:3000/api/";
 
 const registerRouter = Router();
 
@@ -29,10 +28,10 @@ const _storage = multer.diskStorage({
 const upload = multer({ storage: _storage }); // upload 미들웨어
 
 registerRouter.get('/', (req: Request, res: Response) => {
-    res.render('register');
+    res.render('register', { statusCode: 0 } );
 });
 
-registerRouter.post('/',  upload.single('profile'), (req: Request, res: Response, next: NextFunction) => {
+registerRouter.post('/',  upload.single('profile'), async (req: Request, res: Response, next: NextFunction) => {
     try {
         sharp(req.file?.path) //파일크기를 압축시킨다
             .resize({ width: 600 }) // 비율을 유지하며 가로 크기 줄이기
@@ -44,25 +43,23 @@ registerRouter.post('/',  upload.single('profile'), (req: Request, res: Response
                     if (e) next(e);
                 });
             });
-        
+
         const reqBody = req.body as RequestRegister;
         const member: Member = { ...reqBody, profile: req.file?.filename! };
+        const chkEmail = await DB.member.findOne({ where: { email: member.email} });
+        
+        if (chkEmail !== null) { // email 중복 확인
+            res.render('register', { statusCode: 23000 } );
+        } else {
 
-        fetch(APIURL + "register", { 
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(member)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.statusCode == 200) {
-                return res.redirect('/');
-            } else {
-                return res.redirect('/register');
-            }
-        });
+            await DB.member.create({
+                email: member.email,
+                password: member.password,
+                profile: member.profile
+            });
+
+            res.render('register', { statusCode: 200 } );
+        }
     } catch (error) {
         next(error);
     }
